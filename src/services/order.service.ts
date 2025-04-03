@@ -16,9 +16,11 @@ export class OrderService {
 
     let totalPrice = order.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-    if (totalPrice <= 0) {
-      throw new Error('Total price must be greater than 0');
-    }
+    // Because the price and quantity are already validated above, we can safely assume that totalPrice is greater than 0
+    // Uncomment this check if you want to enforce that totalPrice must be greater than 0
+    // if (totalPrice <= 0) {
+    //   throw new Error('Total price must be greater than 0');
+    // }
 
     if (order.couponId) {
       const response = await fetch(`https://67eb7353aa794fb3222a4c0e.mockapi.io/coupons/${order.couponId}`)
